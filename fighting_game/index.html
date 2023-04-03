@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./js/util.js"></script>
+    <script src="./js/classes.js" defer></script>
+    <script src="./index.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- container that contains all the canvas size -->
+    <div class="container">
+        <!-- container that contains the healthAndTimerBar -->
+        <div class="healthAndTimerBar">
+            <!-- Player's health -->
+            <div class="player">
+                <div class="player-health" ></div>
+                <div class="playerBar" id="playerHealth"></div>
+            </div>
+            <!-- Timer -->
+            <div class="timer" id="timer">10</div>
+            <!-- Enemy's health -->
+            <div class="enemy">
+                <div class="enemy-health" ></div>
+                <div class="enemyBar" id="enemyHealth"></div>
+            </div>
+        </div>
+        <!-- label that appears when timer ends -->
+        <div class="tie" id="displayText">tie</div>
+        <canvas></canvas>
+    </div>
+
+</body>
+
+</html>
