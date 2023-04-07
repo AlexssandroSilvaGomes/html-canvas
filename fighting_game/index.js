@@ -301,7 +301,7 @@ const animate = () => {
         // const enemyHealth = document.querySelector('#enemyHealth')
         // enemyHealth.style.width = enemy.health + '%'
 
-        //enemy health animation lib decrease
+        //enemy health decrease animation at gsap lib 
         gsap.to('#enemyHealth', {
             width: enemy.health + '%'
         })
@@ -326,7 +326,7 @@ const animate = () => {
         
         // const playerHealth = document.querySelector('#playerHealth')
         // playerHealth.style.width = player.health + '%'
-        //player health animation lib decrease
+        //player health decrease animation at gsap lib
         gsap.to('#playerHealth', {
             width: player.health + '%'
         })
