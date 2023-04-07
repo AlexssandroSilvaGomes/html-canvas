@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./js/util.js"></script>
     <script src="./js/classes.js" defer></script>
     <script src="./index.js" defer></script>
@@ -19,15 +23,15 @@
         <div class="healthAndTimerBar">
             <!-- Player's health -->
             <div class="player">
-                <div class="player-health" ></div>
-                <div class="playerBar" id="playerHealth"></div>
+                <div class="player-health health-color"></div>
+                <div class="playerBar bar-color" id="playerHealth"></div>
             </div>
             <!-- Timer -->
             <div class="timer" id="timer">10</div>
             <!-- Enemy's health -->
             <div class="enemy">
-                <div class="enemy-health" ></div>
-                <div class="enemyBar" id="enemyHealth"></div>
+                <div class="enemy-health health-color"></div>
+                <div class="enemyBar bar-color" id="enemyHealth"></div>
             </div>
         </div>
         <!-- label that appears when timer ends -->

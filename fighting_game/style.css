@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .container {
@@ -16,12 +17,14 @@
 }
 
 .timer {
-    height: 100px;
+    height: 50px;
     width: 100px;
     flex-shrink: 0;
     display: grid;
     place-items: center;
-    background-color: red;
+    background-color: #44403C;
+    color: #FAFAF9;
+    border: 4px solid #FAFAF9;
 }
 
 .player {
@@ -30,18 +33,29 @@
     justify-content: flex-end;
     height: 30px;
     width: 100%;
+    border-top: 4px solid #FAFAF9;
+    border-left: 4px solid #FAFAF9;
+    border-bottom: 4px solid #FAFAF9;
+    border-radius: 5px 0px 0px 5px;
 }
 
 .enemy {
+    display: flex;
     position: relative;
     height: 30px;
     width: 100%;
+    border-top: 4px solid #FAFAF9;
+    border-right: 4px solid #FAFAF9;
+    border-bottom: 4px solid #FAFAF9;
+    border-radius: 0px 5px 5px 0px;
 }
 
-.enemy-health, .player-health {
-    height: 100%;
+.enemy-health {
     width: 100%;
-    background-color: yellow;
+}
+
+.player-health {
+    width: 100%;
 }
 
 .playerBar {
@@ -50,7 +64,7 @@
     right: 0;
     bottom: 0;
     width: 100%;
-    background: blue;
+    height: 100%;
 }
 
 .enemyBar {
@@ -59,7 +73,16 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: blue;
+    width: 100%;
+    height: 100%;
+}
+
+.health-color {
+    background-color: #DC2626;
+}
+
+.bar-color {
+    background: #818CF8;
 }
 
 .tie {
@@ -70,5 +93,5 @@
     right: 0;
     bottom: 0;
     left: 0;
-    color: white;
+    color: #FAFAF9;
 }

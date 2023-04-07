@@ -68,6 +68,14 @@ const player = new Fighter({
         attack1: {
             imageSrc: './resources/samuraiMack/Attack1.png',
             framesMax: 6
+        },
+        takeHit: {
+            imageSrc: './resources/samuraiMack/Take Hit.png',
+            framesMax: 4
+        },
+        death: {
+            imageSrc: './resources/samuraiMack/Death.png',
+            framesMax: 6
         }
     },
     attackBox: {
@@ -121,6 +129,14 @@ const enemy = new Fighter({
         attack1: {
             imageSrc: './resources/Kenji/Attack1.png',
             framesMax: 4
+        },
+        takeHit: {
+            imageSrc: './resources/Kenji/Take hit.png',
+            framesMax: 3
+        },
+        death: {
+            imageSrc: './resources/Kenji/Death.png',
+            framesMax: 7
         }
     },
     attackBox: {
@@ -153,40 +169,45 @@ const keys = {
 
 //movement events
 window.addEventListener('keydown', (event) => {
-    switch (event.key) {
-        //players keys
-        case "d":
-            keys.d.pressed = true
-            player.lastKey = 'd'
-            break;
-        case "a":
-            keys.a.pressed = true
-            player.lastKey = 'a'
-            break;
-        case "w":
-            player.velocity.y = -20
-            break;
-        case 's':
-            player.attack()
-            break;
-
-        //enemys keys
-        case "ArrowRight":
-            keys.ArrowRight.pressed = true
-            enemy.lastKey = 'ArrowRight'
-            break;
-        case "ArrowLeft":
-            keys.ArrowLeft.pressed = true
-            enemy.lastKey = 'ArrowLeft'
-            break;
-        case "ArrowUp":
-            enemy.velocity.y = -20
-            break;
-        case 'ArrowDown':
-            enemy.attack()
-        default:
-            break;
+    if (!player.dead) {
+        switch (event.key) {
+            //players keys
+            case "d":
+                keys.d.pressed = true
+                player.lastKey = 'd'
+                break;
+            case "a":
+                keys.a.pressed = true
+                player.lastKey = 'a'
+                break;
+            case "w":
+                player.velocity.y = -20
+                break;
+            case 's':
+                player.attack()
+                break;
+        }
     }
+    if (!enemy.dead) {
+        switch (event.key) {
+            //enemys keys
+            case "ArrowRight":
+               keys.ArrowRight.pressed = true
+               enemy.lastKey = 'ArrowRight'
+               break;
+           case "ArrowLeft":
+               keys.ArrowLeft.pressed = true
+               enemy.lastKey = 'ArrowLeft'
+               break;
+           case "ArrowUp":
+               enemy.velocity.y = -20
+               break;
+           case 'ArrowDown':
+               enemy.attack()
+           default:
+               break;
+       }
+    }  
 })
 
 window.addEventListener('keyup', (event) => {
@@ -220,6 +241,8 @@ const animate = () => {
 
     background.update()
     shop.update()
+    c.fillStyle = 'rgba(255, 255, 255, 0.1)'
+    c.fillRect(0, 0, innerWidth, innerHeight)
     player.update()
     enemy.update()
 
@@ -263,7 +286,7 @@ const animate = () => {
     }
 
     //detect for collision
-    //player attack
+    //player attack & enemy gets hit
     if (
         retangularCollision({
             rectangle1: player,
@@ -272,10 +295,16 @@ const animate = () => {
         player.isAttacking &&
         player.framesCurrent === 4
     ) {
+        enemy.takeHit()
         player.isAttacking = false
-        const enemyHealth = document.querySelector('#enemyHealth')
-        enemy.health -= 25
-        enemyHealth.style.width = enemy.health + '%'
+
+        // const enemyHealth = document.querySelector('#enemyHealth')
+        // enemyHealth.style.width = enemy.health + '%'
+
+        //enemy health animation lib decrease
+        gsap.to('#enemyHealth', {
+            width: enemy.health + '%'
+        })
     }
 
     //if player misses
@@ -283,18 +312,24 @@ const animate = () => {
         player.isAttacking = false
     }
 
-    //enemy attack
+    //enemy attack & player gets hit
     if (
+
         retangularCollision({
-        rectangle1: enemy,
-        rectangle2: player
-        }) && 
+            rectangle1: enemy,
+            rectangle2: player
+        }) &&
         enemy.isAttacking
-        ) {
+    ) {
+        player.takeHit()
         enemy.isAttacking = false
-        const playerHealth = document.querySelector('#playerHealth')
-        player.health -= 10
-        playerHealth.style.width = player.health + '%'
+        
+        // const playerHealth = document.querySelector('#playerHealth')
+        // playerHealth.style.width = player.health + '%'
+        //player health animation lib decrease
+        gsap.to('#playerHealth', {
+            width: player.health + '%'
+        })
     }
 
     //if enemy misses
